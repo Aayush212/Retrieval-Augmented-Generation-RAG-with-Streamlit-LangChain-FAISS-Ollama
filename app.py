@@ -13,8 +13,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Load the GROQ API KEY
-os.environ["GROQ_API_KEY"] = "your_groq_api_key_here"  # Use correct key format
-llm = ChatGroq(model_name="llama3-8b-8192")  # Correct spelling
+os.environ["GROQ_API_KEY"] = "your_groq_api_key_here"  
+llm = ChatGroq(model_name="llama3-8b-8192")
 
 # Define prompt template
 prompt = ChatPromptTemplate.from_template(
@@ -41,7 +41,7 @@ def create_vector_embedding():
         st.session_state.vectors = FAISS.from_documents(st.session_state.final_documents, st.session_state.embeddings)
 
 # User input field
-user_prompt = st.text_input("Enter Your Query from research paper")  # Corrected text input usage
+user_prompt = st.text_input("Enter Your Query from research paper") 
 
 # Button to create document embeddings
 if st.button("Document Embedding"):
@@ -58,7 +58,7 @@ if user_prompt:
         retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
         start = time.process_time()
-        response = retrieval_chain.invoke({'input': user_prompt})  # Use 'input' as defined in prompt
+        response = retrieval_chain.invoke({'input': user_prompt})
         st.write(f"Response Time: {time.process_time() - start} seconds")
 
         # Display the answer
